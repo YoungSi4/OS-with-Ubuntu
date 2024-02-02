@@ -4,19 +4,19 @@
 void *threadRoutine(void* arg){
 	long argument;
 	argument = *((long *)arg);
-	return (void *)(argument + 100);
+	return (void *)(argument*10);
 }
 
 int main(){
 	pthread_t threadID;
 	printf("Create thread!\n");
-	long argument = -1;
+	long argument = 100;
 	int status;
 	void *value;
 
-	status = pthread_create(&threadID, NULL, threadRoutine, (void *)argument);
+	status = pthread_create(&threadID, NULL, threadRoutine, (void *)&argument);
 
-	printf("Main Thread is no waitinf for Thread!\n");
+	printf("Main Thread is no waiting for Thread!\n");
 
 	pthread_join(threadID, &value);
 
